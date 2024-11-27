@@ -20,3 +20,51 @@ stages:
       hash: md5
       md5: c00e08a8956daf14065b4dbe6687f6c6
       size: 9966
+  train_model:
+    cmd: python train_model.py
+    deps:
+    - path: data/train.csv
+      hash: md5
+      md5: c00e08a8956daf14065b4dbe6687f6c6
+      size: 9966
+    - path: train_model.py
+      hash: md5
+      md5: f1eaea9984181151cde48fa56d580cc3
+      size: 1114
+    outs:
+    - path: models/SVC/model
+      hash: md5
+      md5: 511459f2330642b057ed18e05d547a12
+      size: 15671
+    - path: models/SVC/model_parameters.yaml
+      hash: md5
+      md5: b3732d15043f95d4795c8a303c92d483
+      size: 67
+  eval_model:
+    cmd: python eval_model.py
+    deps:
+    - path: data/test.csv
+      hash: md5
+      md5: 3c11d588eec804bb8b771b340d9f098e
+      size: 2650
+    - path: eval_model.py
+      hash: md5
+      md5: 7a715a728e06b5b679b9ab1d8e43970e
+      size: 2811
+    - path: models/SVC/model
+      hash: md5
+      md5: 511459f2330642b057ed18e05d547a12
+      size: 15671
+    outs:
+    - path: models/SVC/confusion_matrix.png
+      hash: md5
+      md5: b6ac777c4e12eee66f76d6346b568bba
+      size: 13721
+    - path: models/SVC/feature_importances.png
+      hash: md5
+      md5: 7ee44e039fa0c8ed265b7eddae7d4be6
+      size: 37778
+    - path: models/SVC/metrics.yaml
+      hash: md5
+      md5: 31258a6fbd7df28ec3712aa4d145f2be
+      size: 128
